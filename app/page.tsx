@@ -7,7 +7,7 @@ export const revalidate = 30;
 
 export default async function Home() {
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 md:py-20">
       <ProfileInfo />
       <Skills />
       <Projects />

@@ -5,17 +5,6 @@ import Image from "next/image";
 import { GetStaticProps } from "next";
 import { Project } from "../lib/types/Project";
 
-export const getStaticProps: GetStaticProps = async () => {
-  const projects: Project[] = await fetchProjects();
-
-  return {
-    props: {
-      projects,
-    },
-    revalidate: 60, // Revalidate at most once every 60 seconds
-  };
-};
-
 export default async function Projects() {
   const projects: Project[] = await fetchProjects();
   return (
@@ -27,24 +16,24 @@ export default async function Projects() {
         <h2 className="text-center font-secondary mt-24 font-bold text-3xl text-white">
           My Projects
         </h2>
-        <div className="container mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 lg:gap-12">
+        <div className="container mt-5 grid  md:grid-cols-2 lg:grid-cols-2 lg:gap-8 grid-cols-1">
           {projects.map((project) => (
             <div className="flex flex-col">
               <Link
                 href={`/projects/${project.slug}`}
-                className="my-12 rounded-lg hover:scale-105 hover:border-pink-500 transition shadow-white hover:shadow-md hover:shadow-white "
+                className="my-12 rounded-lg hover:scale-105 hover:border-pink-500 transition shadow-lg hover:shadow-pink-700 "
                 key={project._id}
               >
                 {project.image && (
                   <Image
                     src={project.image}
-                    alt={project.alt}
+                    alt={project.name}
                     width={750}
                     height={300}
                     className="object-cover rounded-lg hover:*"
                   />
                 )}
-                <div className="mt-2 font-extraboild text-pink-400">
+                <div className="mt-2 font-extrabold text-white font-secondary">
                   {project.name}
                 </div>
               </Link>
@@ -54,19 +43,4 @@ export default async function Projects() {
       </div>
     </section>
   );
-}
-
-{
-  /* <div>
-                  {project.url && (
-                    <Link
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="md:items-center font-primary mt-6 hover:border-pink-700 border border-white hover:bg-pink-700 text-white font-bold py-2 px-4 rounded"
-                    >
-                      SOURCE CODE
-                    </a>
-                  )}
-                </div> */
 }
