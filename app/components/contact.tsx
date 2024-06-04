@@ -79,7 +79,11 @@ const Contact = () => {
             </button>
           </div>
         </form>
-        {done && "Thank you for your message"}
+        {done && (
+          <div className="text-center mt-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
+            Thank you for your message! Will get back to you soon.
+          </div>
+        )}
       </div>
     </div>
   );
