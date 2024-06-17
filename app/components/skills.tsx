@@ -21,7 +21,7 @@ export default async function Skills() {
       id="skills"
       className="h-fit lg:pt-20 pt-20 pb-20 lg:pb-20 flex flex-col"
     >
-      <div>
+      <div className="hidden md:grid">
         <h2 className="font-secondary mb-12 text-center font-bold text-3xl text-white">
           Skills
         </h2>
@@ -50,6 +50,33 @@ export default async function Skills() {
           ))}
         </div>
       </div>
+      <h2 className="md:hidden font-secondary mb-12 text-center font-bold text-3xl text-white">
+        Skills
+      </h2>
+      {skills.length > 0 && (
+        <div className="md:hidden mt-5 grid grid-cols-3 gap-8">
+          {skills.map((skill, index) => (
+            <div
+              key={index}
+              className="shadow-md shadow-pink-700 border-pink-500 p-2 flex justify-center items-center rounded-md"
+              style={{
+                animation: `up-down 2s infinite ease-in-out`,
+                animationDelay: `${index * 0.7}s`,
+              }}
+            >
+              {skill.image && (
+                <Image
+                  src={skill.image}
+                  alt={skill.alt}
+                  width={40}
+                  height={40}
+                  className="object-cover"
+                />
+              )}
+            </div>
+          ))}
+        </div>
+      )}
     </section>
   );
 }

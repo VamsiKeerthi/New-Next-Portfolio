@@ -15,14 +15,12 @@ export default async function Projects() {
         <h2 className="text-center font-secondary mt-24 font-bold text-3xl text-white">
           My Projects
         </h2>
-        <div className="container mt-5 grid md:grid-cols-2 lg:grid-cols-2 lg:gap-8 grid-cols-1 gap-0">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
           {projects.map((project) => (
             <div className="flex flex-col" key={project._id}>
-              {" "}
-              {/* Added key prop */}
               <Link
                 href={`/projects/${project.slug}`}
-                className="my-12 rounded-lg hover:scale-105 hover:border-pink-500 transition shadow-lg hover:shadow-pink-700 "
+                className="my-6 rounded-lg transition transform hover:scale-105 border border-transparent hover:border-pink-500 shadow-lg hover:shadow-pink-700"
               >
                 {project.image && (
                   <Image
@@ -30,10 +28,10 @@ export default async function Projects() {
                     alt={project.name}
                     width={750}
                     height={300}
-                    className="object-cover rounded-lg hover:*"
+                    className="object-cover rounded-lg"
                   />
                 )}
-                <div className="mt-2 font-extrabold text-white font-secondary">
+                <div className="mt-2 font-extrabold text-white font-secondary text-center">
                   {project.name}
                 </div>
               </Link>
