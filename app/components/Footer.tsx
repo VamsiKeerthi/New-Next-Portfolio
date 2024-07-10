@@ -4,7 +4,7 @@ export default function Footer() {
       <div className="text-center">
         <div>Vamsi Keerthi</div>
         <div className="normal-nums">
-          @{new Date().getFullYear()} All Rights Reserved
+          ©{new Date().getFullYear()} All Rights Reserved
         </div>
       </div>
     </footer>
