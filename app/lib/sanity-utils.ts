@@ -2,6 +2,7 @@ import { Project } from "./types/Project";
 import { Profile } from "./types/Profile";
 import { Skill } from "./types/Skills";
 import { createClient, groq } from "next-sanity";
+import { Awards } from "./types/awards";
 
 export const revalidate = 30;
 
@@ -83,6 +84,26 @@ export async function fetchSkills(): Promise<Skill[]> {
         name,
         "image": image.asset->url,
         level
+    }`
+  );
+}
+
+export async function fetchCertificates(): Promise<Awards[]> {
+  const client = createClient({
+    projectId: "z03n0ht0",
+    dataset: "production",
+    apiVersion: "2023-05-09",
+  });
+
+  return client.fetch(
+    groq`*[_type == "certifications"]| order(_createdAt asc){
+        _id,
+        _createdAt,
+        name,
+        issued,
+        issuer,
+        url,
+        "image": image.asset->url,
     }`
   );
 }

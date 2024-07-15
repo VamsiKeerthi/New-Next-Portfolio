@@ -91,6 +91,14 @@ export default function Navbar() {
           </Link>
           <Link href="/" scroll={false}>
             <button
+              onClick={() => scrollToSection("awards")}
+              className={pathname === "/#awards" ? "active" : ""}
+            >
+              Certs
+            </button>
+          </Link>
+          <Link href="/" scroll={false}>
+            <button
               onClick={() => scrollToSection("contact")}
               className={pathname === "/#contact" ? "active" : ""}
             >
@@ -121,6 +129,17 @@ export default function Navbar() {
               className={pathname === "/#projects" ? "active" : ""}
             >
               Projects
+            </button>
+          </Link>
+          <Link href="/" scroll={false}>
+            <button
+              onClick={() => {
+                scrollToSection("awards");
+                toggleMenu();
+              }}
+              className={pathname === "/#awards" ? "active" : ""}
+            >
+              Certs
             </button>
           </Link>
           <Link href="/" scroll={false}>

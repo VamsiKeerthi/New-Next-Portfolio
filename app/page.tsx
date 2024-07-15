@@ -2,6 +2,7 @@ import Contact from "./components/contact";
 import ProfileInfo from "./components/profile";
 import Skills from "./components/skills";
 import Projects from "./components/myworks";
+import Certificates from "./components/awards";
 
 export const revalidate = 30;
 
@@ -11,6 +12,7 @@ export default async function Home() {
       <ProfileInfo />
       <Skills />
       <Projects />
+      <Certificates />
       <section
         id="contact"
         className=" grid place-items-center text-sm lg:text-base p-5 lg:p-0"

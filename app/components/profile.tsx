@@ -21,7 +21,7 @@ export default async function ProfileInfo() {
               {profile.name}
             </h2>
             <div className="relative h-10 overflow-hidden">
-              <div className="absolute top-0 left-0 w-full h-full animate-move">
+              <div className="absolute top-0 left-0 w-full h-full animate-move font-secondary">
                 {profile.jobTitles.map((title: string, index: number) => (
                   <div
                     key={index}
