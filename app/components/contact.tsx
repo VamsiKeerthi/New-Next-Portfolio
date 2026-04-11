@@ -4,6 +4,9 @@ import { useRef, useState } from "react";
 import axios from "axios";
 import emailjs from "@emailjs/browser";
 
+// Initialize EmailJS
+emailjs.init("JHa4ql6W0HZqsnqJN");
+
 const Contact = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [done, setDone] = useState(false);
@@ -13,10 +16,10 @@ const Contact = () => {
     if (formRef.current) {
       emailjs
         .sendForm(
-          "service_qry6xx9",
-          "template_sdbyb5e",
+          "service_anyaqo4",
+          "template_4oo1uje",
           formRef.current,
-          "hn6r4-MhmKX4ULNPB"
+          "JHa4ql6W0HZqsnqJN",
         )
         .then(
           (result) => {
@@ -26,7 +29,7 @@ const Contact = () => {
           },
           (error) => {
             console.log(error.text);
-          }
+          },
         );
     }
   };

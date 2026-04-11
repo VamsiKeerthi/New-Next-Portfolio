@@ -83,6 +83,14 @@ export default function Navbar() {
           </Link>
           <Link href="/" scroll={false}>
             <button
+              onClick={() => scrollToSection("experience")}
+              className={pathname === "/#experience" ? "active" : ""}
+            >
+              Experience
+            </button>
+          </Link>
+          <Link href="/" scroll={false}>
+            <button
               onClick={() => scrollToSection("projects")}
               className={pathname === "/#projects" ? "active" : ""}
             >
@@ -118,6 +126,17 @@ export default function Navbar() {
               className={pathname === "/#skills" ? "active" : ""}
             >
               Skills
+            </button>
+          </Link>
+          <Link href="/" scroll={false}>
+            <button
+              onClick={() => {
+                scrollToSection("experience");
+                toggleMenu();
+              }}
+              className={pathname === "/#experience" ? "active" : ""}
+            >
+              Experience
             </button>
           </Link>
           <Link href="/" scroll={false}>

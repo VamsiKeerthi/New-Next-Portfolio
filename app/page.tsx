@@ -2,15 +2,17 @@ import Contact from "./components/contact";
 import ProfileInfo from "./components/profile";
 import Skills from "./components/skills";
 import Projects from "./components/myworks";
+import Experience from "./components/experience";
 import Certificates from "./components/awards";
 
 export const revalidate = 30;
 
 export default async function Home() {
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 md:py-20">
+    <div className="container mx-auto px-4 sm:px-4 lg:px-6 md:py-20">
       <ProfileInfo />
       <Skills />
+      <Experience />
       <Projects />
       <Certificates />
       <section

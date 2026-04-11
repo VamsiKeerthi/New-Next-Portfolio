@@ -1,6 +1,7 @@
 import { Project } from "./types/Project";
 import { Profile } from "./types/Profile";
 import { Skill } from "./types/Skills";
+import { Experience } from "./types/Experience";
 import { createClient, groq } from "next-sanity";
 import { Awards } from "./types/awards";
 
@@ -8,7 +9,7 @@ export const revalidate = 30;
 
 export async function fetchProjects(): Promise<Project[]> {
   const client = createClient({
-    projectId: "z03n0ht0",
+    projectId: "jhx3s3w1",
     dataset: "production",
     apiVersion: "2023-05-15",
     useCdn: false,
@@ -23,35 +24,38 @@ export async function fetchProjects(): Promise<Project[]> {
         "image": image.asset->url,
         url,
         content,
-    }`
+    }`,
   );
 }
 
 export async function getProject(slug: string): Promise<Project> {
   const client = createClient({
-    projectId: "z03n0ht0",
+    projectId: "jhx3s3w1",
     dataset: "production",
     apiVersion: "2023-05-09",
   });
 
-  return client.fetch(
-    groq`*[_type == "project" && slug.current == $slug][0]{
+  const project = await client.fetch(
+    groq`*[_type == "project" && (slug.current == $slug || slug.current == "/" + $slug)][0]{
         _id,
         _createdAt,
         name,
         "slug": slug.current,
         "image": image.asset->url,
+        alt,
         url,
         site,
         content,
     }`,
-    { slug }
+    { slug },
   );
+
+  return project;
 }
 
 export async function fetchProfileDetails(): Promise<Profile[]> {
   const client = createClient({
-    projectId: "z03n0ht0",
+    projectId: "jhx3s3w1",
     dataset: "production",
     apiVersion: "2023-05-09",
   });
@@ -66,13 +70,13 @@ export async function fetchProfileDetails(): Promise<Profile[]> {
         resume,
         content,
         contactInfo[]  { title, "image" : image.asset->url , link }
-    }`
+    }`,
   );
 }
 
 export async function fetchSkills(): Promise<Skill[]> {
   const client = createClient({
-    projectId: "z03n0ht0",
+    projectId: "jhx3s3w1",
     dataset: "production",
     apiVersion: "2023-05-09",
   });
@@ -84,13 +88,13 @@ export async function fetchSkills(): Promise<Skill[]> {
         name,
         "image": image.asset->url,
         level
-    }`
+    }`,
   );
 }
 
 export async function fetchCertificates(): Promise<Awards[]> {
   const client = createClient({
-    projectId: "z03n0ht0",
+    projectId: "jhx3s3w1",
     dataset: "production",
     apiVersion: "2023-05-09",
   });
@@ -104,6 +108,30 @@ export async function fetchCertificates(): Promise<Awards[]> {
         issuer,
         url,
         "image": image.asset->url,
-    }`
+    }`,
+  );
+}
+
+export async function fetchExperience(): Promise<Experience[]> {
+  const client = createClient({
+    projectId: "jhx3s3w1",
+    dataset: "production",
+    apiVersion: "2023-05-09",
+  });
+
+  return client.fetch(
+    groq`*[_type == "experience"]| order(startDate desc){
+        _id,
+        _createdAt,
+        position,
+        company,
+        location,
+        startDate,
+        endDate,
+        currentlyWorking,
+        description,
+        "companyLogo": companyLogo.asset->url,
+        skills
+    }`,
   );
 }

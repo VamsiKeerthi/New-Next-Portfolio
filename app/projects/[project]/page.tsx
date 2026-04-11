@@ -10,6 +10,10 @@ export default async function Project({ params }: Props) {
   const slug = params.project;
   const project = await getProject(slug);
 
+  if (!project) {
+    return <div className="text-center text-white p-5">Project not found</div>;
+  }
+
   return (
     <div className="p-5">
       <h1 className="text-center text-4xl text-white font-secondary font-extrabold lg:start-0 place-items-center">
