@@ -56,13 +56,14 @@ export default function Navbar() {
                     rel="noopener noreferrer"
                   >
                     {item.image && (
-                      <div>
+                      <div className="relative">
                         <Image
                           src={item.image}
-                          alt=""
+                          alt={item.title || "Social Icon"}
                           width={30}
-                          height={40}
-                          className="rounded-full object-fill"
+                          height={30}
+                          className="rounded-full object-cover"
+                          priority={false}
                         />
                       </div>
                     )}
